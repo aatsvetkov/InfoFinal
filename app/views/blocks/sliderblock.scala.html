@@ -1,0 +1,6 @@
+@(field: models.Field)
+
+<div class="block">
+    @field.getLabel@if(field.isRequired==true){*}<br>
+<input type="range" min="1" max="10" name="@field.getFieldId">
+</div>

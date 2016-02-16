@@ -1,0 +1,9 @@
+@(field: models.Field)
+
+
+<div class="block">
+    <div class="form-group">
+        <label for="comment"> @field.getLabel @if(field.isRequired==true){*}</label>
+        <textarea class=" @if(field.isRequired==true){requ} form-control" name="@field.getFieldId" rows="4"></textarea>
+    </div>
+</div>

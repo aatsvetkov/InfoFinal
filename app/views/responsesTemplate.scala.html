@@ -1,0 +1,51 @@
+@(forms: List[models.Form], fields: List[models.Field])
+    @top.render()
+    <body>
+        <div class="mytab">
+            <table class="table table-striped">
+                @if(forms.isEmpty) {
+                    <h3>No responses yet</h3>
+                }
+            <tr>
+            @for(field <- fields) {
+                <th>@field.getLabel</th>
+            }
+            </tr>
+                @for(form <- forms) {
+                    <tr>
+                        @for(field <- fields) {
+                            @for(answer <- form.getAnswers) {
+                                @if(answer.getField().getLabel.equals(field.getLabel)) {
+                                    <td>
+                                        @if(answer.getValue == null && answer.getOptions.isEmpty) {
+                                            N\A
+                                        }
+                                        @if(answer.getValue != null && answer.getValue != "") {
+                                            @answer.getValue
+                                        }
+                                        @if(answer.getValue == "" && answer.getOptions.isEmpty) {
+                                            N\A
+                                        }
+                                        @if(answer.getOptions.nonEmpty) {
+                                            @for(option <- answer.getOptions) {
+                                                @option.getName.concat(" ")
+                                            }
+                                        }
+                                    </td>
+
+                                }
+                            }
+                        }
+                        @for(i <- 1 to (fields.size - form.getAnswers.size)) {
+                            <td>N\A</td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    </body>
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/crfield.css")">
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity = "sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin = "anonymous">
+
+
+

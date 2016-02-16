@@ -1,0 +1,6 @@
+@(field: models.Field)
+
+<div class="block">
+    @field.getLabel@if(field.isRequired == true) {*}<br>
+<input class="@if(field.isRequired == true){requ }form-control singletext" type="text" name="@field.getFieldId">
+</div>

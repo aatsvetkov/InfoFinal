@@ -1,0 +1,28 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                    controllers.Application.index()
+
+# Create edit  delete field page
+POST        /addfield            controllers.Application.addField()
+GET         /createfield         controllers.Application.createField()
+POST        /deletefield         controllers.Application.deleteField()
+GET         /updatefield         controllers.Application.updateField(id: Integer)
+POST        /updatefield         controllers.Application.updateFieldPost()
+
+# Admin page
+GET         /login               controllers.Application.login()
+GET         /logout              controllers.Application.logout()
+POST        /authenticate        controllers.Application.authenticate()
+# All fields page
+GET         /fields              controllers.Application.getAllFields()
+# All responses on the forms
+GET         /responses           controllers.Application.getAllResponses()
+
+POST        /sendresponse        controllers.Application.saveResponse()
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)
+
+GET         /socket              controllers.Application.socket()
